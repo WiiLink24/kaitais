@@ -44,6 +44,13 @@ seq:
     repeat-expr: 255
     
 types:
+  multipart_entry:
+    seq:
+      - id: offset
+        type: u4
+      - id: size
+        type: u4
+
   entry:
     seq:
       - id: id
@@ -70,8 +77,12 @@ types:
         type: u4
       - id: padding
         type: u4
+      - id: always_1
+        type: u1
+      - id: number_of_multipart_entries
+        type: u1
       - id: app_group
-        type: u4
+        type: u2
       - id: packed_from
         type: u4
       - id: packed_to
@@ -88,8 +99,18 @@ types:
       - id: encoded_length
         type: u4
         doc: Set to message_length if transfer encoding not base64.
-      - id: padding_2
-        size: 32
+      - id: multipart_entries
+        type: multipart_entry
+        repeat: expr
+        repeat-expr: 2
+      - id: multipart_sizes
+        type: u4
+        repeat: expr
+        repeat-expr: 2
+      - id: multipart_content_types
+        type: u4
+        repeat: expr
+        repeat-expr: 2
       - id: message_length
         type: u4
       - id: dwc_id
