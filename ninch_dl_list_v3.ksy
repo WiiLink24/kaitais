@@ -64,6 +64,12 @@ instances:
     repeat: expr
     repeat-expr: number_of_manufacturer_info
     
+  title_table:
+    type: title_table
+    pos: title_table_offset
+    repeat: expr
+    repeat-expr: number_of_titles
+    
 types:
   platform_table:
     seq:
@@ -82,6 +88,71 @@ types:
       - id: company_id
         type: u4
       - id: developer_name
-        size: 60
+        size: 62
       - id: publisher_name
-        size: 60
+        size: 62
+        
+  title_table:
+    seq:
+      - id: id
+        type: u4
+      - id: title_id
+        type: u4
+      - id: title_type
+        type: u1
+      - id: genre
+        size: 3
+      - id: company_offset
+        type: u4
+      - id: release_year
+        type: u2
+      - id: release_month
+        type: u1
+      - id: release_day
+        type: u1
+      - id: rating_id
+        type: u1
+      - id: with_friends_female_second_row
+        type: u1
+      - id: with_friends_female_first_row
+        type: u1
+      - id: with_friends_male_second_row
+        type: u1
+      - id: with_friends_male_first_row
+        type: u1
+      - id: with_friends_all_second_row
+        type: u1
+      - id: with_friends_all_first_row
+        type: u1
+      - id: hardcore_female_second_row
+        type: u1
+      - id: hardcore_female_first_row
+        type: u1
+      - id: hardcore_male_second_row
+        type: u1
+      - id: hardcore_male_first_row
+        type: u1
+      - id: hardcore_all_second_row
+        type: u1
+      - id: hardcore_all_first_row
+        type: u1
+      - id: gamers_female_second_row
+        type: u1
+      - id: gamers_female_first_row
+        type: u1
+      - id: gamers_male_second_row
+        type: u1
+      - id: gamers_male_first_row
+        type: u1
+      - id: gamers_all_second_row
+        type: u1
+      - id: gamers_all_first_row
+        type: u1
+      - id: other_flags
+        type: u1
+      - id: title_name
+        size: 62
+      - id: subtitle
+        size: 62
+      - id: short_title
+        size: 62
