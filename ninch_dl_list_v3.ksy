@@ -70,6 +70,12 @@ instances:
     repeat: expr
     repeat-expr: number_of_titles
     
+  video_table:
+    type: video_table
+    pos: video_table_offset
+    repeat: expr
+    repeat-expr: number_of_videos
+    
 types:
   platform_table:
     seq:
@@ -91,6 +97,21 @@ types:
         size: 62
       - id: publisher_name
         size: 62
+        
+  video_table:
+    seq:
+      - id: video_id
+        type: u4
+      - id: video_length
+        type: u2
+      - id: title_id
+        type: u4
+      - id: video_type
+        type: u1
+      - id: unk
+        type: u4
+      - id: title
+        size: 204
         
   title_table:
     seq:
