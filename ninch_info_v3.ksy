@@ -1,5 +1,5 @@
 meta:
-  id: ninch_soft
+  id: ninch_soft_v3
   file-extension:
     - info
   endian: be
@@ -21,8 +21,12 @@ seq:
     type: u4
   - id: language_code
     type: u4
+  - id: recommendation_data_table_offset
+    type: u4
+  - id: times_played_table_offset
+    type: u4
   - id: unk
-    size: 40
+    size: 32
   - id: picture_offset
     type: u4
   - id: picture_size
@@ -30,6 +34,8 @@ seq:
   - id: rating_picture_offset
     type: u4
   - id: rating_picture_size
+    type: u4
+  - id: unk_udk
     type: u4
   - id: rating_detail_picture
     type: rating_detail_picture
@@ -171,6 +177,14 @@ seq:
     encoding: utf-16be
     repeat: expr
     repeat-expr: 10
+
+instances:
+  times_played_table:
+    pos: times_played_table_offset
+    type: times_played_table
+  recommendation_data:
+    pos: recommendation_data_table_offset
+    type: recommendation_data
 
 types:
   times_played_table:
