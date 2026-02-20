@@ -81,11 +81,12 @@ types:
     seq:
       - id: type_id
         type: u1
+      - id: platform_name
+        type: str
+        encoding: UTF16-BE
+        size: 58
       - id: unk
         type: u1
-      - id: platform_name
-        size: 58
-        doc: UTF16-BE, kaitai doesn't like it though
       - id: group_id
         type: u4
         
