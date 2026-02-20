@@ -1,5 +1,5 @@
 meta:
-  id: ninch_soft_v3
+  id: ninch_soft
   file-extension:
     - info
   endian: be
@@ -25,8 +25,22 @@ seq:
     type: u4
   - id: times_played_table_offset
     type: u4
-  - id: unk
-    size: 32
+  - id: people_who_liked_this_also_liked_entry_number
+    type: u4
+  - id: people_who_liked_this_also_liked_table_offset
+    type: u4
+  - id: related_titles_entry_number
+    type: u4
+  - id: related_titles_table_offset
+    type: u4
+  - id: videos_entry_number
+    type: u4
+  - id: videos_table_offset
+    type: u4
+  - id: webpages_entry_number
+    type: u4
+  - id: webpages_table_offset
+    type: u4
   - id: picture_offset
     type: u4
   - id: picture_size
@@ -35,30 +49,29 @@ seq:
     type: u4
   - id: rating_picture_size
     type: u4
-  - id: unk_udk
+  - id: bottom_right_picture_offset
+    type: u4
+  - id: bottom_right_picture_size
     type: u4
   - id: rating_detail_picture
     type: rating_detail_picture
     repeat: expr
     repeat-expr: 7
-  - id: bottom_right_corner_pic_offset
-    type: u4
-  - id: bottom_right_corner_pic_size
-    type: u4
   - id: soft_id
     type: u4
-  - id: platform_flag
+  - id: game_id
+    type: str
+    size: 4
+    encoding: utf-8
+  - id: platform_type
     type: u1
+    enum: platforms
   - id: company_id
     type: u4
-  - id: unknown_5
-    type: u2
-  - id: unknown_6
-    type: u2
-  - id: unknown_7
+  - id: unknown_1
     type: u1
-  - id: wii_shop_channel_button_flag
-    type: u1
+    repeat: expr
+    repeat-expr: 6
   - id: purchase_button_flag
     type: u1
   - id: release_year
@@ -67,10 +80,9 @@ seq:
     type: u1
   - id: release_day
     type: u1
-  - id: shop_points
+  - id: wii_points
     type: u4
-    doc: Null if none. 
-  - id: unknown_8
+  - id: unknown_5
     type: u1
     repeat: expr
     repeat-expr: 3
@@ -88,16 +100,15 @@ seq:
     type: u1
   - id: online_flag
     type: u1
-    doc: 1 is has internet connectivity, 2 is requires the internet.
-  - id: wiiconnect24_flag
+  - id: wii_connect_24_flag
     type: u1
   - id: nintendo_wifi_connection_flag
     type: u1
   - id: downloadable_content_flag
     type: u1
-  - id: wireless_play_flag
+  - id: wireless_play
     type: u1
-  - id: download_play_flag
+  - id: download_play
     type: u1
   - id: touch_generations_flag
     type: u1
@@ -119,7 +130,7 @@ seq:
     type: u1
   - id: language_dutch_flag
     type: u1
-  - id: unknown_9
+  - id: unknown_19
     type: u1
     repeat: expr
     repeat-expr: 10
@@ -143,11 +154,15 @@ seq:
     repeat-expr: 3
   - id: genre_text
     type: str
-    size: 62
+    size: 58
+    encoding: utf-16be
+  - id: unknown_12
+    type: str
+    size: 86
     encoding: utf-16be
   - id: players_text
     type: str
-    size: 82
+    size: 86
     encoding: utf-16be
   - id: peripherals_1_text
     type: str
@@ -157,12 +172,14 @@ seq:
     type: str
     size: 82
     encoding: utf-16be
-  - id: disclaimer_text
+  - id: something_text_again
     type: str
-    size: 4800
+    size: 86
     encoding: utf-16be
-  - id: unknown_11
-    type: u1
+  - id: something_text
+    type: str
+    size: 82
+    encoding: utf-16be
   - id: distribution_date_text
     type: str
     size: 82
@@ -176,16 +193,34 @@ seq:
     size: 82
     encoding: utf-16be
     repeat: expr
-    repeat-expr: 10
-
+    repeat-expr: 9
 instances:
+  people_who_liked_this_also_liked_table:
+    pos: people_who_liked_this_also_liked_table_offset
+    type: people_who_liked_this_also_liked_table
+    repeat: expr
+    repeat-expr: people_who_liked_this_also_liked_entry_number
+  related_titles_table:
+    pos: related_titles_table_offset
+    type: related_titles_table
+    repeat: expr
+    repeat-expr: related_titles_entry_number
+  videos_table:
+    pos: videos_table_offset
+    type: videos_table
+    repeat: expr
+    repeat-expr: videos_entry_number
+  webpages_table:
+    pos: webpages_table_offset
+    type: webpages_table
+    repeat: expr
+    repeat-expr: webpages_entry_number
   times_played_table:
     pos: times_played_table_offset
     type: times_played_table
-  recommendation_data:
+  recommendation_data_table:
     pos: recommendation_data_table_offset
     type: recommendation_data
-
 types:
   times_played_table:
     seq:
@@ -242,9 +277,9 @@ types:
         type: str
         encoding: utf-16be
         size: 62
-  demos_table:
+  webpages_table:
     seq:
-      - id: demo_id
+      - id: webpage
         type: u4
       - id: title
         type: str
