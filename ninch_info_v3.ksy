@@ -49,9 +49,9 @@ seq:
     type: u4
   - id: rating_picture_size
     type: u4
-  - id: unknown_3
+  - id: bottom_right_picture_offset
     type: u4
-  - id: unknown_4
+  - id: bottom_right_picture_size
     type: u4
   - id: rating_detail_picture
     type: rating_detail_picture
